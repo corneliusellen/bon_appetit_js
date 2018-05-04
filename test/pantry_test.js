@@ -32,18 +32,29 @@ describe("Pantry", () => {
 
     it("can add a recipe to the shopping list", () => {
       const pantry = new Pantry()
-      const r = new Recipe("Cheese Pizza")
+      const pizza = new Recipe("Cheese Pizza")
 
-      expect(r.ingredients).to.eql({})
+      expect(pizza.ingredients).to.eql({})
 
-      r.addIngredient("Cheese", 20)
-      r.addIngredient("Flour", 20)
+      pizza.addIngredient("Cheese", 20)
+      pizza.addIngredient("Flour", 20)
 
-      expect(r.ingredients).to.eql({ "Cheese": 20, "Flour": 20 })
+      expect(pizza.ingredients).to.eql({ "Cheese": 20, "Flour": 20 })
 
-      pantry.addToShoppingList(r)
+      pantry.addToShoppingList(pizza)
 
       expect(pantry.shoppingList).to.eql({ "Cheese": 20, "Flour": 20 })
+
+      const spaghetti = new Recipe("Spaghetti")
+      spaghetti.addIngredient("Noodles", 10)
+      spaghetti.addIngredient("Sauce", 10)
+      spaghetti.addIngredient("Cheese", 5)
+
+      expect(spaghetti.ingredients).to.eql({ "Cheese": 5, "Noodles": 10, "Sauce": 10 })
+
+      pantry.addToShoppingList(spaghetti)
+
+      expect(pantry.shoppingList).to.eql({ "Cheese": 25, "Flour": 20, "Noodles": 10, "Sauce": 10 })
     })
   })
 })
